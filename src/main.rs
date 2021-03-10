@@ -35,18 +35,8 @@ use chrono::{DateTime, Duration, TimeZone, Utc};
 fn to_utc(timestamp: u64) -> DateTime<Utc> {
     let start = DateTime::parse_from_rfc3339("1900-01-01T00:00:00Z").unwrap();
     let start: DateTime<Utc> = Utc.from_utc_datetime(&start.naive_utc());
-    let timestamp = convert_endian(timestamp as u32);
+    let timestamp = u32::from_be(timestamp as u32);
     start + Duration::seconds(timestamp as i64)
-}
-
-fn convert_endian(s: u32) -> u32 {
-    let mut ret = 0u32;
-    for i in 0..4 {
-        ret <<= 8;
-        let p = (s >> (8 * i)) & ((1 << 8) - 1);
-        ret |= p;
-    }
-    ret
 }
 
 use anyhow::{Context, Result};
