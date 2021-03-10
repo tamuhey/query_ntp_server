@@ -19,7 +19,7 @@ struct NTPMessage {
 impl NTPMessage {
     fn default_client_message() -> Self {
         Self {
-            header: 0b00_100_011,
+            header: 0b00_100_011, // LI=0, VN=4, Mode=3
             ..Default::default()
         }
     }
