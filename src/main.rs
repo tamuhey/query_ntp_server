@@ -70,6 +70,7 @@ fn main() -> Result<()> {
     println!("receive");
     socket.recv(&mut buf)?;
     let msg = unsafe { *(buf.as_ptr() as *const _ as *const NTPMessage) };
-    println!("Time: {}", to_utc(msg.receive_timestamp));
+    println!("Header: {:08b}", msg.header);
+    println!("Time  : {}", to_utc(msg.receive_timestamp));
     Ok(())
 }
