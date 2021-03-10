@@ -52,7 +52,11 @@ fn convert_endian(s: u32) -> u32 {
 use anyhow::{Context, Result};
 use std::net::UdpSocket;
 
+// time.google.com
+// const NTP_SERVER: &str = "216.239.35.0:123";
+// time.nist.gov
 const NTP_SERVER: &str = "132.163.97.6:123";
+
 fn main() -> Result<()> {
     let socket = UdpSocket::bind("0.0.0.0:0").with_context(|| "failed to bind")?;
     println!("{:?}", socket);
