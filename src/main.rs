@@ -58,7 +58,6 @@ fn main() -> Result<()> {
     println!("{:?}", socket);
     socket.set_read_timeout(None)?;
     let buf = NTPMessage::default_client_message().encode();
-    println!("{:?}", buf);
     println!("connect");
     socket.connect(NTP_SERVER)?;
     println!("send");
